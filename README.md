@@ -1,3 +1,28 @@
+# VictoriaLogs - Distributed Tracing Demo
+
+```shell
+# Clone the repo (to get docker compose and configs files).
+git clone https://github.com/jiekun/opentelemetry-demo.git
+
+# Change to the demo folder
+cd opentelemetry-demo/
+
+# Start the demo
+docker compose up --force-recreate --remove-orphans --detach
+```
+
+The commands above will start multiple applications, **VictoriaLogs**, OpenTelemetry Collector and Grafana.
+
+Applications' telemetry data will go through OpenTelemetry Collector and then be ingested into VictoriaLogs.
+
+You can access the following URLs to:
+1. See how trace spans are stored in VictoriaLogs: [http://127.0.0.1:9428/select/vmui/?#/](http://127.0.0.1:9428/select/vmui/?#/)
+2. Visualize trace data via Grafana: [http://127.0.0.1:8080/grafana/explore](http://127.0.0.1:8080/grafana/explore)
+
+---
+
+# The following sections are the original OpenTelemetry Demo Readme.
+
 <!-- markdownlint-disable-next-line -->
 # <img src="https://opentelemetry.io/img/logos/opentelemetry-logo-nav.png" alt="OTel logo" width="45"> OpenTelemetry Demo
 
