@@ -16,3 +16,12 @@
 #    pipelines:
 #      traces:
 #        exporters: [spanmetrics, otlphttp/example]
+
+exporters:
+  otlphttp/victorialogs:
+    endpoint: http://${env:VICTORIALOGS_HOST}:${env:VICTORIALOGS_PORT}/insert/opentelemetry/
+
+service:
+  pipelines:
+    traces:
+      exporters: [spanmetrics, otlphttp/victorialogs]

@@ -14,6 +14,11 @@ networks:
     driver: bridge
 
 services:
+  victorialogs:
+    image: victoriametrics/victoria-logs:heads-feature-otlp-trace-ingestion-0-g8f42fd45b
+    container_name: victorialogs
+    ports:
+      - "${VICTORIALOGS_PORT}:${VICTORIALOGS_PORT}"
   # ******************
   # Core Demo Services
   # ******************
@@ -352,6 +357,8 @@ services:
       - FLAGD_PORT
       - FLAGD_UI_HOST
       - FLAGD_UI_PORT
+      - VICTORIALOGS_PORT
+      - VICTORIALOGS_HOST
     depends_on:
       frontend:
         condition: service_started
@@ -727,8 +734,6 @@ services:
         limits:
           memory: 120M
     restart: unless-stopped
-    environment:
-      - "GF_INSTALL_PLUGINS=grafana-opensearch-datasource"
     volumes:
       - ./src/grafana/grafana.ini:/etc/grafana/grafana.ini
       - ./src/grafana/provisioning/:/etc/grafana/provisioning/
@@ -768,6 +773,8 @@ services:
       - OTEL_COLLECTOR_PORT_GRPC
       - OTEL_COLLECTOR_PORT_HTTP
       - GOMEMLIMIT=160MiB
+      - VICTORIALOGS_HOST
+      - VICTORIALOGS_PORT
 
   # Prometheus
   prometheus:
