@@ -1,13 +1,18 @@
 # VictoriaLogs - Distributed Tracing Demo
 
+## How to run it locally
+Clone the repo (to get docker compose and configs files).
 ```shell
-# Clone the repo (to get docker compose and configs files).
 git clone https://github.com/jiekun/opentelemetry-demo.git
+```
 
-# Change to the demo folder
+Change to the demo folder
+```shell
 cd opentelemetry-demo/
+```
 
-# Start the demo
+Start the demo
+```shell
 docker compose up --force-recreate --remove-orphans --detach
 ```
 
